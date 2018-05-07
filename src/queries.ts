@@ -8,6 +8,13 @@ export const getLinks = gql`
         createdAt
         url
         description
+        postedBy {
+          id
+          name
+        }
+        votes {
+          id
+        }
       }
     }
   }
@@ -20,6 +27,25 @@ export const createLink = gql`
       createdAt
       url
       description
+    }
+  }
+`
+
+export const vote = gql`
+  mutation vote($linkId: ID!) {
+    vote(linkId: $linkId) {
+      id
+      link {
+        votes {
+          id
+          user {
+            id
+          }
+        }
+      }
+      user {
+        id
+      }
     }
   }
 `

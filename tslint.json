@@ -9,6 +9,7 @@
     "max-classes-per-file": false,
     "jsx-no-lambda": false,
     "interface-name": false,
-    "ordered-imports": false // This is handled by sort-import in vscode
+    "ordered-imports": false, // This is handled by sort-import in vscode
+    "no-console": false
   }
 }

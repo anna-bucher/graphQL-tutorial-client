@@ -1,9 +1,9 @@
-import { getLinksQuery } from 'gen/types'
 import * as React from 'react'
-import { Query } from 'react-apollo'
-import { getLinks } from 'src/queries'
 
 import { Link } from './Link'
+import { Query } from 'react-apollo'
+import { getLinks } from 'src/queries'
+import { getLinksQuery } from 'gen/types'
 
 class LinksQuery extends Query<getLinksQuery, {}> {}
 
@@ -23,7 +23,13 @@ export const LinkList: React.SFC<{}> = props => (
       }
 
       const { links } = data.feed
-      return <div>{links.map(link => <Link key={link.id} link={link} />)}</div>
+      return (
+        <div>
+          {links.map((link, index) => (
+            <Link key={link.id} link={link} index={index} />
+          ))}
+        </div>
+      )
     }}
   </LinksQuery>
 )

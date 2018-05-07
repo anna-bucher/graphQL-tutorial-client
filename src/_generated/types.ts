@@ -10,6 +10,15 @@ export interface getLinksQuery {
       createdAt: string,
       url: string,
       description: string,
+      postedBy:  {
+        __typename: "User",
+        id: string,
+        name: string,
+      } | null,
+      votes:  Array< {
+        __typename: "Vote",
+        id: string,
+      } > | null,
     } >,
   },
 };
@@ -27,6 +36,32 @@ export interface createLinkMutation {
     url: string,
     description: string,
   },
+};
+
+export interface voteMutationVariables {
+  linkId: string,
+};
+
+export interface voteMutation {
+  vote:  {
+    __typename: "Vote",
+    id: string,
+    link:  {
+      __typename: "Link",
+      votes:  Array< {
+        __typename: "Vote",
+        id: string,
+        user:  {
+          __typename: "User",
+          id: string,
+        },
+      } > | null,
+    },
+    user:  {
+      __typename: "User",
+      id: string,
+    },
+  } | null,
 };
 
 export interface signupMutationVariables {
